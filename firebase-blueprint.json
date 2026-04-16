@@ -1,0 +1,69 @@
+{
+  "entities": {
+    "Master": {
+      "title": "Mestre Barbeiro",
+      "description": "Profissional da barbearia",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Nome do barbeiro" },
+        "specialty": { "type": "string", "description": "Especialidade" },
+        "image": { "type": "string", "description": "URL da imagem" }
+      },
+      "required": ["name", "specialty", "image"]
+    },
+    "PortfolioItem": {
+      "title": "Item do Portfólio",
+      "description": "Imagem da galeria visual",
+      "type": "object",
+      "properties": {
+        "image": { "type": "string", "description": "URL da imagem" },
+        "category": { "type": "string", "description": "Categoria (ex: Corte, Barba)" }
+      },
+      "required": ["image"]
+    },
+    "Service": {
+      "title": "Serviço",
+      "description": "Serviço oferecido pela barbearia",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Título do serviço" },
+        "price": { "type": "string", "description": "Preço formatado" },
+        "duration": { "type": "string", "description": "Duração" },
+        "desc": { "type": "string", "description": "Descrição detalhada" }
+      },
+      "required": ["title", "price", "duration", "desc"]
+    },
+    "Appointment": {
+      "title": "Agendamento",
+      "description": "Reserva de horário de um cliente",
+      "type": "object",
+      "properties": {
+        "time": { "type": "string", "description": "Horário (HH:mm)" },
+        "date": { "type": "string", "description": "Data (YYYY-MM-DD)" },
+        "name": { "type": "string", "description": "Nome do cliente" },
+        "service": { "type": "string", "description": "Nome do serviço" },
+        "status": { "type": "string", "enum": ["Pendente", "Confirmado", "Concluído", "Cancelado"] },
+        "uid": { "type": "string", "description": "UID do usuário que criou" }
+      },
+      "required": ["time", "date", "name", "service", "status"]
+    },
+    "Settings": {
+      "title": "Configurações",
+      "description": "Identidade visual da barbearia",
+      "type": "object",
+      "properties": {
+        "shopName": { "type": "string" },
+        "location": { "type": "string" },
+        "logoScale": { "type": "number" },
+        "accentColor": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/masters": { "schema": "Master", "description": "Lista de barbeiros mestres" },
+    "/portfolio": { "schema": "PortfolioItem", "description": "Galeria de fotos" },
+    "/services": { "schema": "Service", "description": "Menu de serviços" },
+    "/appointments": { "schema": "Appointment", "description": "Agendamentos de clientes" },
+    "/settings": { "schema": "Settings", "description": "Configurações globais do sistema" }
+  }
+}
